@@ -35,7 +35,7 @@ export default class HelloWord extends Component {
           resizeMode={"contain"}
           source={{uri:'https://unsplash.it/600/400/?random'}}
         />
-        <Text style={styles.red}>just red yellow master</Text>
+        <Text style={styles.red}>just red yellow master and color </Text>
         <Text style={styles.bigblue}>just bigblue</Text>
         <Text style={[styles.bigblue, styles.red]}>bigblue, then red</Text>
         <Text style={[styles.red, styles.bigblue]}>red, then bigblue</Text>
