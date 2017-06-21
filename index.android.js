@@ -36,7 +36,7 @@ export default class HelloWord extends Component {
           source={{uri:'https://unsplash.it/600/400/?random'}}
         />
         <Text style={styles.red}>just red yellow master and color </Text>
-        <Text style={styles.bigblue}>just bigblue</Text>
+        <Text style={styles.bigblue}>just bigblue master1 </Text>
         <Text style={[styles.bigblue, styles.red]}>bigblue, then red</Text>
         <Text style={[styles.red, styles.bigblue]}>red, then bigblue</Text>
         <Image source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}} style={{width: 193, height: 110}} />
