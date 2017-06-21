@@ -27,7 +27,7 @@ export default class HelloWord extends Component {
           Double tap R on your keyboard to reload,{'\n'}
           Shake or press menu button for dev menu
         </Text>
-        <Image 
+        <Image
           style={{
             width: 300,
             height: 200,
@@ -40,6 +40,8 @@ export default class HelloWord extends Component {
         <Text style={[styles.bigblue, styles.red]}>bigblue, then red</Text>
         <Text style={[styles.red, styles.bigblue]}>red, then bigblue</Text>
         <Image source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}} style={{width: 193, height: 110}} />
+        <Text style={[styles.red, styles.bigblue]}>red, then bigblue</Text>
+        <Text style={[styles.red, styles.bigblue]}>red, then bigblue</Text>
         <View style={{
         flex: 1,
         flexDirection: 'column',
