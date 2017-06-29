@@ -19,6 +19,10 @@ import ImageItem from '../widget/ImageItem'
 // create a component
 class ListPage extends PureComponent {
 
+        static navigationOptions = ({ navigation }) => ({
+            title: "HomePage",
+            header:null,
+        })
     props: {
         onSubmitEditing: Function,
         text: string,

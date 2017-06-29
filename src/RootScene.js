@@ -131,21 +131,34 @@ const Tab = TabNavigator(
 
 );
 
+Tab.navigationOptions = ({ title: 'Welcome', header: null });
 
 const Navigator = StackNavigator(
     {
-        Tab: { screen: Tab },
+        Tab: {
+          screen: Tab,
+          // navigationOptions: {
+          //     // headerStyle: { backgroundColor: color.theme }
+          //     // headerBackTitle: null,
+          //     header: null,
+          //     headerTintColor: '#333333',
+          //     // showIcon: true,
+          // },
+        },
         Home: { screen: HomePage },
     }
-    // ,
-    // {
-    //     navigationOptions: {
-    //         // headerStyle: { backgroundColor: color.theme }
-    //         headerBackTitle: null,
-    //         headerTintColor: '#333333',
-    //         showIcon: true,
-    //     },
-    // }
+    ,
+    {
+      headerMode:'screen',
+      navigationOptions: {
+          // headerStyle: { backgroundColor: color.theme }
+          // headerBackTitle: null,
+          // header: null,
+          // title:'HelloReactNative',
+          headerTintColor: '#333333',
+          showIcon: true,
+      },
+    }
 );
 
 const styles = StyleSheet.create({
