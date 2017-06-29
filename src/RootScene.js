@@ -14,7 +14,10 @@ import {
   Dimensions,
 } from 'react-native'
 
-import ImageItem from './widget/ImageItem'
+import HomePage from './pages/HomePage'
+import ListPage from './pages/ListPage'
+import NewsPage from './pages/NewsPage'
+import UserCenterPage from './pages/UserCenterPage'
 
 // create a component
 class RootScene extends PureComponent {
@@ -60,86 +63,7 @@ class RootScene extends PureComponent {
 
     render() {
         return (
-          <ScrollView>
-            <View style={{height:1500}}>
-              <Text style={styles.instructions}>
-                 当前屏幕宽度: {Dimensions.get('window').width} input: {this.state.text}
-              </Text>
-              <Lightbox navigator={this.props.navigator}>
-                <Image 
-                  style={{
-                    height:  300 , 
-                    width:  400 ,
-                  }}
-                  source={{uri:'https://seagm.github.io/react-test/images/awesome4.jpg'}}
-                />
-              </Lightbox>
-              <Image 
-                style={{
-                  width:  250 ,
-                  height:  410 ,
-                }}
-                resizeMode={"contain"}
-                source={{uri:'https://seagm.github.io/react-test/images/awesome1.jpg'}}
-              />
-              <ImageItem />
-
-              {/*
-              <Image source={{uri: 'http://jojol.imwork.net/zb_users/upload/2017/05/201705131494607219270064.jpg'}}
-                style={{width: 400, height: 400,backgroundColor: 'red'}} /> */}
-
-              <TextInput
-                style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                onSubmitEditing={this.onSubmitEditing.bind(this)}
-                onChangeText={(text) => {
-                                text = text.replace(/ /g, '_');
-                                console.log(`onChangeText replace :${this.state.text} vs ${text}`);
-                                this.setState({text});
-                              }}
-                returnKeyType='next'
-                value={this.state.text}
-              />
-
-              <View style={{flex: 1, backgroundColor: 'powderblue'}} />
-              <View style={{flex: 2, backgroundColor: 'skyblue'}} />
-              <View style={{flex: 3, flexDirection:'row', padding:10, backgroundColor: 'steelblue'}} >
-                <View style={{flex: 1, backgroundColor: 'red'}}></View>
-                <View style={{flex: 1, backgroundColor: 'orange'}}></View>
-                <View style={{flex: 1, backgroundColor: 'yellow'}}></View>
-              </View>
-            </View>
-
-
-            <View style={{height:400}}>
-              <Text style={styles.instructions}>
-                 当前屏幕宽度: {Dimensions.get('window').width} input: {this.state.text}
-              </Text>
-              <TextInput
-                style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                onSubmitEditing={this.onSubmitEditing.bind(this)}
-                onChangeText={(text) => {
-                                text = text.replace(/ /g, '_');
-                                console.log(`onChangeText replace :${this.state.text} vs ${text}`);
-                                this.setState({text});
-                              }}
-                returnKeyType='next'
-                value={this.state.text}
-              />
-
-
-              <View style={{
-                flex: 1,
-                flexDirection: 'column',
-                backgroundColor:'orange',
-                justifyContent: 'flex-start',
-                alignItems: 'center'
-              }}>
-                <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
-                <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
-                <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
-              </View>
-            </View>
-          </ScrollView>
+          <UserCenterPage />
 
         );
     }
