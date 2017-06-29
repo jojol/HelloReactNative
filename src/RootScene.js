@@ -1,3 +1,4 @@
+import Lightbox from 'react-native-lightbox'
 //import liraries
 import React, { PureComponent } from 'react'
 // import { StatusBar } from 'react-native'
@@ -60,11 +61,27 @@ class RootScene extends PureComponent {
     render() {
         return (
           <ScrollView>
-            <View style={{height:900}}>
+            <View style={{height:1500}}>
               <Text style={styles.instructions}>
                  当前屏幕宽度: {Dimensions.get('window').width} input: {this.state.text}
               </Text>
-
+              <Lightbox navigator={this.props.navigator}>
+                <Image 
+                  style={{
+                    height:  300 , 
+                    width:  400 ,
+                  }}
+                  source={{uri:'https://seagm.github.io/react-test/images/awesome4.jpg'}}
+                />
+              </Lightbox>
+              <Image 
+                style={{
+                  width:  250 ,
+                  height:  410 ,
+                }}
+                resizeMode={"contain"}
+                source={{uri:'https://seagm.github.io/react-test/images/awesome1.jpg'}}
+              />
               <ImageItem />
 
               {/*

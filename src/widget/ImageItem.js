@@ -47,12 +47,13 @@ class ImageItem extends PureComponent {
         console.log(`onSubmitEditing :${this.state.loading}`);
     }
 
+  //,borderRadius:70,borderWidth:2
     render() {
         return (
           <Image
-            source={{uri: 'https://seagm.github.io/react-test/images/ucp-cover.png'}}
+            source={{uri: 'https://seagm.github.io/react-test/images/hello-react.jpg'}}
             resizeMode={'stretch'}
-            style={{width: 400, height: 400,backgroundColor: 'red',borderRadius:70,borderWidth:2 }}
+            style={{width: 400, height: 400,opacity: 0.7}}
             onLoadStart={(e) => {
               this.setState({loading: 'started'});
               console.log('Image onLoadStart');
