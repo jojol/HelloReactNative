@@ -1,8 +1,5 @@
 import Lightbox from 'react-native-lightbox'
-//import liraries
 import React, { PureComponent } from 'react'
-// import { StatusBar } from 'react-native'
-// import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import {
   StyleSheet,
   ScrollView,
