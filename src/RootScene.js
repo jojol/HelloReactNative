@@ -11,21 +11,20 @@ import {
   TextInput,
   Image,
   View,
+  StatusBar,
   Dimensions,
 } from 'react-native'
+import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
 
 import HomePage from './pages/HomePage'
 import ListPage from './pages/ListPage'
 import NewsPage from './pages/NewsPage'
 import UserCenterPage from './pages/UserCenterPage'
 
+import TabBarItem from './widget/TabBarItem'
 // create a component
 class RootScene extends PureComponent {
-
     props: {
-        onSubmitEditing: Function,
-        text: string,
-        onChangeText: Function,
         onSubmit: Function,
       }
 
@@ -39,35 +38,115 @@ class RootScene extends PureComponent {
     // }
       constructor(props) {
           super(props);
-          this.state = { text: 'Useless Placeholder' };
+          this.state = { text: 'constructor text' };
           // console.log(`ListRequest - Success node:${this.requestNode}`);
       }
-
-    onChangeText(text: string) {
-        this.setState({ text: text });
-        console.log(`onChangeText :${this.state.text} vs ${text}`);
-        // this.props.onChangeText && this.props.onChangeText()
-    }
-
-    onSubmitEditing() {
-        console.log(`onSubmitEditing :${this.state.text}`);
-        if (this.props.onSubmit) {
-            this.props.onSubmit(this.state.text);
-        }
-    }
-
-    // onChangeText={(text) => { this.onChangeText(text) }}
-    onSubmit() {
-        console.log(`onSubmit :${this.state.text}`);
-    }
-
+      onSubmit() {
+          console.log('onSubmit');
+      }
     render() {
         return (
-          <UserCenterPage />
+          <Navigator />
 
         );
     }
 }
+
+const Tab = TabNavigator(
+    {
+        Home: {
+            screen: HomePage,
+            navigationOptions: ({ navigation }) => ({
+                tabBarLabel: '首页',
+                tabBarIcon: ({ focused, tintColor }) => (
+                    <TabBarItem
+                        tintColor={tintColor}
+                        focused={focused}
+                        normalImage={require('./img/tabbar/homepage.png')}
+                        selectedImage={require('./img/tabbar/homepage_selected.png')}
+                    />
+                )
+            }),
+        },
+        Nearby: {
+            screen: NewsPage,
+            navigationOptions: ({ navigation }) => ({
+                tabBarLabel: '新闻',
+                tabBarIcon: ({ focused, tintColor }) => (
+                    <TabBarItem
+                        tintColor={tintColor}
+                        focused={focused}
+                        normalImage={require('./img/tabbar/merchant.png')}
+                        selectedImage={require('./img/tabbar/merchant_selected.png')}
+                    />
+                )
+            }),
+        },
+
+        Order: {
+            screen: ListPage,
+            navigationOptions: ({ navigation }) => ({
+                tabBarLabel: '列表',
+                tabBarIcon: ({ focused, tintColor }) => (
+                    <TabBarItem
+                        tintColor={tintColor}
+                        focused={focused}
+                        normalImage={require('./img/tabbar/order.png')}
+                        selectedImage={require('./img/tabbar/order_selected.png')}
+                    />
+                )
+            }),
+        },
+
+        Mine: {
+            screen: UserCenterPage,
+            navigationOptions: ({ navigation }) => ({
+                tabBarLabel: '个人',
+                tabBarIcon: ({ focused, tintColor }) => (
+                    <TabBarItem
+                        tintColor={tintColor}
+                        focused={focused}
+                        normalImage={require('./img/tabbar/mine.png')}
+                        selectedImage={require('./img/tabbar/mine_selected.png')}
+                    />
+                )
+            }),
+        },
+    },
+    {
+        tabBarComponent: TabBarBottom,
+        tabBarPosition: 'bottom',
+        swipeEnabled: true,
+        animationEnabled: true,
+        lazy: true,
+        tabBarOptions: {
+            activeTintColor: '#06C1AE',
+            inactiveTintColor: '#979797',
+            activeBackgroundColor:'#DDDDDD',
+            inactiveBackgroundColor:'#FFFFFF',
+            showLabel:true,
+            style: { backgroundColor: '#ffffff' },
+        },
+    }
+
+);
+
+
+const Navigator = StackNavigator(
+    {
+        Tab: { screen: Tab },
+        Home: { screen: HomePage },
+    }
+    // ,
+    // {
+    //     navigationOptions: {
+    //         // headerStyle: { backgroundColor: color.theme }
+    //         headerBackTitle: null,
+    //         headerTintColor: '#333333',
+    //         showIcon: true,
+    //     },
+    // }
+);
 
 const styles = StyleSheet.create({
   container: {
