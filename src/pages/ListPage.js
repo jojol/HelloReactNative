@@ -63,6 +63,9 @@ class ListPage extends PureComponent {
     }
 
     render() {
+
+        const { params } = this.props.navigation.state;
+        console.log("this.props.navigation.state.params" + params)
         return (
           <ScrollView>
 

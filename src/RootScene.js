@@ -1,20 +1,20 @@
 import Lightbox from 'react-native-lightbox'
 //import liraries
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react'
 // import { StatusBar } from 'react-native'
 // import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import {
-  AppRegistry,
-  StyleSheet,
-  ScrollView,
-  Text,
-  TextInput,
-  Image,
-  View,
-  StatusBar,
-  Dimensions,
+    AppRegistry,
+    StyleSheet,
+    ScrollView,
+    Text,
+    TextInput,
+    Image,
+    View,
+    StatusBar,
+    Dimensions,
 } from 'react-native'
-import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
+import {StackNavigator, TabNavigator, TabBarBottom} from 'react-navigation'
 
 import HomePage from './pages/HomePage'
 import ListPage from './pages/ListPage'
@@ -26,27 +26,29 @@ import TabBarItem from './widget/TabBarItem'
 class RootScene extends PureComponent {
     props: {
         onSubmit: Function,
-      }
+    }
 
-      state: {
+    state: {
         text: string
-      }
+    }
     // constructor() {
     //     super()
     //
     //     StatusBar.setBarStyle('light-content')
     // }
-      constructor(props) {
-          super(props);
-          this.state = { text: 'constructor text' };
-          // console.log(`ListRequest - Success node:${this.requestNode}`);
-      }
-      onSubmit() {
-          console.log('onSubmit');
-      }
+    constructor(props) {
+        super(props);
+        this.state = {text: 'constructor text'};
+        // console.log(`ListRequest - Success node:${this.requestNode}`);
+    }
+
+    onSubmit() {
+        console.log('onSubmit');
+    }
+
     render() {
         return (
-          <Navigator />
+            <Navigator />
 
         );
     }
@@ -56,9 +58,9 @@ const Tab = TabNavigator(
     {
         Home: {
             screen: HomePage,
-            navigationOptions: ({ navigation }) => ({
+            navigationOptions: ({navigation}) => ({
                 tabBarLabel: '首页',
-                tabBarIcon: ({ focused, tintColor }) => (
+                tabBarIcon: ({focused, tintColor}) => (
                     <TabBarItem
                         tintColor={tintColor}
                         focused={focused}
@@ -70,9 +72,9 @@ const Tab = TabNavigator(
         },
         Nearby: {
             screen: NewsPage,
-            navigationOptions: ({ navigation }) => ({
+            navigationOptions: ({navigation}) => ({
                 tabBarLabel: '新闻',
-                tabBarIcon: ({ focused, tintColor }) => (
+                tabBarIcon: ({focused, tintColor}) => (
                     <TabBarItem
                         tintColor={tintColor}
                         focused={focused}
@@ -85,9 +87,9 @@ const Tab = TabNavigator(
 
         Order: {
             screen: ListPage,
-            navigationOptions: ({ navigation }) => ({
+            navigationOptions: ({navigation}) => ({
                 tabBarLabel: '列表',
-                tabBarIcon: ({ focused, tintColor }) => (
+                tabBarIcon: ({focused, tintColor}) => (
                     <TabBarItem
                         tintColor={tintColor}
                         focused={focused}
@@ -100,9 +102,9 @@ const Tab = TabNavigator(
 
         Mine: {
             screen: UserCenterPage,
-            navigationOptions: ({ navigation }) => ({
+            navigationOptions: ({navigation}) => ({
                 tabBarLabel: '个人',
-                tabBarIcon: ({ focused, tintColor }) => (
+                tabBarIcon: ({focused, tintColor}) => (
                     <TabBarItem
                         tintColor={tintColor}
                         focused={focused}
@@ -122,71 +124,73 @@ const Tab = TabNavigator(
         tabBarOptions: {
             activeTintColor: '#06C1AE',
             inactiveTintColor: '#979797',
-            activeBackgroundColor:'#DDDDDD',
-            inactiveBackgroundColor:'#FFFFFF',
-            showLabel:true,
-            style: { backgroundColor: '#ffffff' },
+            activeBackgroundColor: '#DDDDDD',
+            inactiveBackgroundColor: '#FFFFFF',
+            showLabel: true,
+            style: {backgroundColor: '#ffffff'},
         },
     }
-
 );
 
-Tab.navigationOptions = ({ title: 'Welcome', header: null });
+Tab.navigationOptions = ({title: 'Welcome', header: null});
 
 const Navigator = StackNavigator(
     {
         Tab: {
-          screen: Tab,
-          // navigationOptions: {
-          //     // headerStyle: { backgroundColor: color.theme }
-          //     // headerBackTitle: null,
-          //     header: null,
-          //     headerTintColor: '#333333',
-          //     // showIcon: true,
-          // },
+            screen: Tab,
+            // navigationOptions: {
+            //     // headerStyle: { backgroundColor: color.theme }
+            //     // headerBackTitle: null,
+            //     header: null,
+            //     headerTintColor: '#333333',
+            //     // showIcon: true,
+            // },
         },
-        Home: { screen: HomePage },
+        Home: {screen: HomePage},
+        ListPage: {screen: ListPage},
     }
     ,
     {
-      headerMode:'screen',
-      navigationOptions: {
-          // headerStyle: { backgroundColor: color.theme }
-          // headerBackTitle: null,
-          // header: null,
-          // title:'HelloReactNative',
-          headerTintColor: '#333333',
-          showIcon: true,
-      },
+        headerMode: 'screen',
+        initialRouteName: "Tab",
+        initialRouteParams:{user:"init roter jojol"},
+        navigationOptions: {
+            // headerStyle: { backgroundColor: color.theme }
+            // headerBackTitle: null,
+            // header: null,
+            // title:'HelloReactNative',
+            headerTintColor: '#333333',
+            showIcon: true,
+        },
     }
 );
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  bigblue: {
-    color: 'blue',
-    fontWeight: 'bold',
-    fontSize: 30,
-    backgroundColor: 'powderblue',
-  },
-  red: {
-    color: 'red',
-  },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+    },
+    welcome: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10,
+    },
+    instructions: {
+        textAlign: 'center',
+        color: '#333333',
+        marginBottom: 5,
+    },
+    bigblue: {
+        color: 'blue',
+        fontWeight: 'bold',
+        fontSize: 30,
+        backgroundColor: 'powderblue',
+    },
+    red: {
+        color: 'red',
+    },
 });
 
 export default RootScene;
