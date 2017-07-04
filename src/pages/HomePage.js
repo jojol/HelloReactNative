@@ -80,13 +80,13 @@ class HomePage extends PureComponent {
                 {/*</Text>*/}
 
 
-                <TouchableNativeFeedback
-                    onPress={this.onTouchPress}
-                    background={TouchableNativeFeedback.SelectableBackground()}>
-                    <View style={{width: 300, height: 50, backgroundColor: 'red'}}>
-                        <Text style={{margin: 15}}>TouchableNativeFeedback Button</Text>
-                    </View>
-                </TouchableNativeFeedback>
+                {/*<TouchableNativeFeedback*/}
+                    {/*onPress={this.onTouchPress}*/}
+                    {/*background={TouchableNativeFeedback.SelectableBackground()}>*/}
+                    {/*<View style={{width: 300, height: 50, backgroundColor: 'red'}}>*/}
+                        {/*<Text style={{margin: 15}}>TouchableNativeFeedback Button</Text>*/}
+                    {/*</View>*/}
+                {/*</TouchableNativeFeedback>*/}
 
                 <TouchableHighlight
                     onPress={() => {
