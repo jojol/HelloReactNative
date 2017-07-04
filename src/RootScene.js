@@ -13,8 +13,10 @@ import {
     View,
     StatusBar,
     Dimensions,
+    InteractionManager,
 } from 'react-native'
 import {StackNavigator, TabNavigator, TabBarBottom} from 'react-navigation'
+import SplashScreen from 'react-native-splash-screen'
 
 import HomePage from './pages/HomePage'
 import ListPage from './pages/ListPage'
@@ -30,6 +32,21 @@ class RootScene extends PureComponent {
 
     state: {
         text: string
+    }
+
+    componentDidMount() {
+        this.timer = setTimeout(() => {
+            InteractionManager.runAfterInteractions(() => {
+                SplashScreen.hide();
+                // navigator.resetTo({
+                //     component: HomePage,
+                //     name: 'HomePage',
+                // });
+            });
+        }, 2000);
+        // // do stuff while splash screen is shown
+        // // After having done stuff (such as async tasks) hide the splash screen
+        // SplashScreen.hide();
     }
     // constructor() {
     //     super()
@@ -48,7 +65,23 @@ class RootScene extends PureComponent {
 
     render() {
         return (
-            <Navigator />
+            <Navigator
+                onNavigationStateChange={
+                    (prevState, currentState) => {
+                        console.log("prevState " + prevState);
+                        console.log("currentState " + currentState);
+                        // const currentScene = getCurrentRouteName(currentState);
+                        // const previousScene = getCurrentRouteName(prevState);
+                        // if (previousScene !== currentScene) {
+                        //     if (lightContentScenes.indexOf(currentScene) >= 0) {
+                        //         StatusBar.setBarStyle('light-content')
+                        //     } else {
+                        //         StatusBar.setBarStyle('dark-content')
+                        //     }
+                        // }
+                    }
+                }
+            />
 
         );
     }
@@ -132,7 +165,7 @@ const Tab = TabNavigator(
     }
 );
 
-Tab.navigationOptions = ({title: 'Welcome', header: null});
+// Tab.navigationOptions = ({title: 'Welcome', header: null});
 
 const Navigator = StackNavigator(
     {

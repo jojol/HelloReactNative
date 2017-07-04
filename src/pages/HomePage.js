@@ -8,7 +8,7 @@ import {
     Image,
     Button,
     View,
-    Dimensions,
+    Dimensions, TouchableNativeFeedback, TouchableHighlight,
 } from 'react-native'
 
 import ImageItem from '../widget/ImageItem'
@@ -41,9 +41,15 @@ class HomePage extends PureComponent {
         // console.log(`ListRequest - Success node:${this.requestNode}`);
     }
 
-    onChangeText(text: string) {
-        this.setState({text: text});
+    onChangeText = (text) => {
+        text = text.replace(/ /g, '_');
         console.log(`onChangeText :${this.state.text} vs ${text}`);
+        this.setState({text});
+    }
+
+
+    onTouchPress = () => {
+        console.log(`onTouchPress :${this.state.text}`);
         // this.props.onChangeText && this.props.onChangeText()
     }
 
@@ -60,7 +66,7 @@ class HomePage extends PureComponent {
     }
 
     render() {
-        const { params } = this.props.navigation.state;
+        const {params} = this.props.navigation.state;
         console.log("this.props.navigation.state.params" + params)
         return (
             <ScrollView>
@@ -70,15 +76,32 @@ class HomePage extends PureComponent {
 
 
                 {/*<Text style={styles.instructions}>*/}
-                    {/*initialRouteParams: {this.props.state} input: {params.user}*/}
+                {/*initialRouteParams: {this.props.state} input: {params.user}*/}
                 {/*</Text>*/}
+
+
+                <TouchableNativeFeedback
+                    onPress={this.onTouchPress}
+                    background={TouchableNativeFeedback.SelectableBackground()}>
+                    <View style={{width: 300, height: 50, backgroundColor: 'red'}}>
+                        <Text style={{margin: 15}}>TouchableNativeFeedback Button</Text>
+                    </View>
+                </TouchableNativeFeedback>
+
+                <TouchableHighlight
+                    onPress={() => {
+                        console.log('TouchableHighlight onPress');
+                    }}
+                >
+                    <Text>TouchableHighlight Button</Text>
+                </TouchableHighlight>
 
                 <Text style={styles.instructions}>
                     HomePage
                 </Text>
 
                 <Button
-                    onPress={() => this.props.navigation.navigate('ListPage',{fatherPage:'HomePage'})}
+                    onPress={() => this.props.navigation.navigate('Tab', {fatherPage: 'HomePage'})}
                     title="JumpToHomePage"
                 />
 
@@ -113,6 +136,13 @@ class HomePage extends PureComponent {
                             console.log(`onChangeText replace :${this.state.text} vs ${text}`);
                             this.setState({text});
                         }}
+                        returnKeyType='next'
+                        value={this.state.text}
+                    />
+                    <TextInput
+                        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                        onSubmitEditing={this.onSubmitEditing.bind(this)}
+                        onChangeText={this.onChangeText}
                         returnKeyType='next'
                         value={this.state.text}
                     />
