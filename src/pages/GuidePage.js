@@ -36,7 +36,7 @@ class GuidePage extends PureComponent {
         console.log("this.props.navigation.state.params" + params)
         return (
             <View>
-                <StatusBar barStyle='light-content'/>
+                {/*<StatusBar barStyle='light-content'/>*/}
                 <Swiper style={styles.wrapper}
                         dot={<View style={{
                             backgroundColor: 'rgba(255,255,255,.3)',
@@ -66,10 +66,19 @@ class GuidePage extends PureComponent {
                     </View>
                     <View style={styles.slide}>
                         <Image style={styles.image} source={require('../img/guide/guide3.jpg')}/>
-                        <Button
-                            onPress={() => this.props.navigation.navigate('Tab', {fatherPage: 'GuidePage'})}
-                            title="Next"
-                        />
+                        <View style={{
+                            position: 'absolute',
+                            width:100,
+                            height:50,
+                            right:20,
+                            bottom: 70
+                        }}>
+                            <Button
+                                onPress={() => this.props.navigation.navigate('Tab', {fatherPage: 'GuidePage'})}
+                                title="Next"
+                            />
+                        </View>
+
                     </View>
                 </Swiper>
             </View>
@@ -84,7 +93,7 @@ const styles = StyleSheet.create({
 
     slide: {
         flex: 1,
-        backgroundColor: 'transparent'
+        backgroundColor: 'darkslategrey'
     },
 
     image: {

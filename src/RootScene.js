@@ -1,30 +1,16 @@
-import Lightbox from 'react-native-lightbox'
-//import liraries
-import React, {PureComponent} from 'react'
-// import { StatusBar } from 'react-native'
-// import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
-import {
-    AppRegistry,
-    StyleSheet,
-    ScrollView,
-    Text,
-    TextInput,
-    Image,
-    View,
-    StatusBar,
-    Dimensions,
-    InteractionManager,
-} from 'react-native'
-import {StackNavigator, TabNavigator, TabBarBottom} from 'react-navigation'
-import SplashScreen from 'react-native-splash-screen'
+import React, {PureComponent} from "react";
+import {InteractionManager, StyleSheet} from "react-native";
+import {StackNavigator, TabBarBottom, TabNavigator} from "react-navigation";
+import SplashScreen from "react-native-splash-screen";
 
-import HomePage from './pages/HomePage'
-import ListPage from './pages/ListPage'
-import NewsPage from './pages/NewsPage'
-import UserCenterPage from './pages/UserCenterPage'
+import HomePage from "./pages/HomePage";
+import ListPage from "./pages/ListPage";
+import NewsPage from "./pages/NewsPage";
+import UserCenterPage from "./pages/UserCenterPage";
 
-import TabBarItem from './widget/TabBarItem'
+import TabBarItem from "./widget/TabBarItem";
 import GuidePage from "./pages/GuidePage";
+
 // create a component
 class RootScene extends PureComponent {
     props: {
@@ -44,16 +30,9 @@ class RootScene extends PureComponent {
                 //     name: 'HomePage',
                 // });
             });
-        }, 2000);
-        // // do stuff while splash screen is shown
-        // // After having done stuff (such as async tasks) hide the splash screen
-        // SplashScreen.hide();
+        }, 1500);
     }
-    // constructor() {
-    //     super()
-    //
-    //     StatusBar.setBarStyle('light-content')
-    // }
+
     constructor(props) {
         super(props);
         this.state = {text: 'constructor text'};
