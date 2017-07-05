@@ -24,6 +24,7 @@ import NewsPage from './pages/NewsPage'
 import UserCenterPage from './pages/UserCenterPage'
 
 import TabBarItem from './widget/TabBarItem'
+import GuidePage from "./pages/GuidePage";
 // create a component
 class RootScene extends PureComponent {
     props: {
@@ -165,7 +166,7 @@ const Tab = TabNavigator(
     }
 );
 
-// Tab.navigationOptions = ({title: 'Welcome', header: null});
+Tab.navigationOptions = ({title: 'Welcome', header: null});
 
 const Navigator = StackNavigator(
     {
@@ -181,11 +182,12 @@ const Navigator = StackNavigator(
         },
         Home: {screen: HomePage},
         ListPage: {screen: ListPage},
+        Guide: {screen: GuidePage},
     }
     ,
     {
         headerMode: 'screen',
-        initialRouteName: "Tab",
+        initialRouteName: "Guide",
         initialRouteParams:{user:"init roter jojol"},
         navigationOptions: {
             // headerStyle: { backgroundColor: color.theme }
