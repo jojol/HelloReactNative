@@ -11,6 +11,7 @@ import UserCenterPage from "./pages/UserCenterPage";
 import TabBarItem from "./widget/TabBarItem";
 import GuidePage from "./pages/GuidePage";
 import SubChannelsPage from "./pages/SubChannelsPage";
+import UserSetting from "./pages/UserSetting";
 
 // create a component
 class RootScene extends PureComponent {
@@ -21,7 +22,6 @@ class RootScene extends PureComponent {
     state: {
         text: string
     }
-
     componentDidMount() {
         this.timer = setTimeout(() => {
             InteractionManager.runAfterInteractions(() => {
@@ -47,6 +47,7 @@ class RootScene extends PureComponent {
         super(props);
         this.state = {text: 'constructor text'};
         // console.log(`ListRequest - Success node:${this.requestNode}`);
+        UserSetting.settings.name = 'hello';
     }
 
     render() {

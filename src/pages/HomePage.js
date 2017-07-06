@@ -13,6 +13,7 @@ import {
 } from 'react-native'
 
 import ImageItem from '../widget/ImageItem'
+import UserSetting from './UserSetting'
 
 // create a component
 class HomePage extends PureComponent {
@@ -31,6 +32,12 @@ class HomePage extends PureComponent {
     state: {
         text: string
     }
+
+    settings = {
+        user:'jojol',
+        name:'popo',
+    };
+
     // constructor() {
     //     super()
     //
@@ -50,6 +57,7 @@ class HomePage extends PureComponent {
 
 
     onTouchPress = () => {
+        this.settings.gogod = 'gogo';
         console.log(`onTouchPress :${this.state.text}`);
         // this.props.onChangeText && this.props.onChangeText()
     }
@@ -72,7 +80,7 @@ class HomePage extends PureComponent {
         return (
             <ScrollView>
                 <Text style={styles.instructions}>
-                    当前屏幕宽度: {Dimensions.get('window').width} input: {this.state.text}
+                    当前屏幕宽度: {Dimensions.get('window').width} input: {UserSetting.settings.type} input: {HomePage.name}
                 </Text>
 
 
@@ -90,9 +98,11 @@ class HomePage extends PureComponent {
                 {/*</TouchableNativeFeedback>*/}
 
                 <TouchableHighlight
-                    onPress={() => {
-                        ToastAndroid.show('TouchableHighlight !', ToastAndroid.SHORT);
-                    }}
+                    // onPress={() => {
+                    //     ToastAndroid.show('TouchableHighlight !', ToastAndroid.SHORT);
+                    //
+                    // }}
+                    onPress={this.onTouchPress}
                     activeOpacity={0.5}
                     underlayColor={'lightgrey'}
                     style={{
