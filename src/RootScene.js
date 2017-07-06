@@ -10,6 +10,7 @@ import UserCenterPage from "./pages/UserCenterPage";
 
 import TabBarItem from "./widget/TabBarItem";
 import GuidePage from "./pages/GuidePage";
+import SubChannelsPage from "./pages/SubChannelsPage";
 
 // create a component
 class RootScene extends PureComponent {
@@ -33,14 +34,19 @@ class RootScene extends PureComponent {
         }, 1500);
     }
 
+    componentWillUnmount(){
+        this.timer && clearTimeout(this.timer);
+    }
+
+    onTouchPress = () => {
+        console.log(`onTouchPress :${this.state.text}`);
+        // this.props.onChangeText && this.props.onChangeText()
+    }
+
     constructor(props) {
         super(props);
         this.state = {text: 'constructor text'};
         // console.log(`ListRequest - Success node:${this.requestNode}`);
-    }
-
-    onSubmit() {
-        console.log('onSubmit');
     }
 
     render() {
@@ -84,7 +90,7 @@ const Tab = TabNavigator(
             }),
         },
         Nearby: {
-            screen: NewsPage,
+            screen: SubChannelsPage,
             navigationOptions: ({navigation}) => ({
                 tabBarLabel: '新闻',
                 tabBarIcon: ({focused, tintColor}) => (

@@ -8,6 +8,7 @@ import {
     Image,
     Button,
     View,
+    ToastAndroid,
     Dimensions, TouchableNativeFeedback, TouchableHighlight,
 } from 'react-native'
 
@@ -90,7 +91,16 @@ class HomePage extends PureComponent {
 
                 <TouchableHighlight
                     onPress={() => {
-                        console.log('TouchableHighlight onPress');
+                        ToastAndroid.show('TouchableHighlight !', ToastAndroid.SHORT);
+                    }}
+                    activeOpacity={0.5}
+                    underlayColor={'lightgrey'}
+                    style={{
+                        height:60,
+                        flex:1,
+                        backgroundColor:'dodgerblue',
+                        alignItems:'center',
+                        justifyContent:'center'
                     }}
                 >
                     <Text>TouchableHighlight Button</Text>
@@ -99,6 +109,55 @@ class HomePage extends PureComponent {
                 <Text style={styles.instructions}>
                     HomePage
                 </Text>
+
+                <View style={{
+                    backgroundColor:'blue',
+                    flexDirection:'row',
+                    flexWrap:'wrap',
+                    // alignItems:'center',
+                    justifyContent:'space-around'
+                }}>
+                    <Text style={{
+                        height:50,
+                        margin:2,
+                        backgroundColor:'lightblue',
+                        textAlignVertical:'center'
+                    }}>
+                        Wrap HomePage
+                    </Text>
+                    <Text style={{
+                        height:50,
+                        margin:2,
+                        backgroundColor:'lightblue',
+                        justifyContent:'center'
+                    }}>
+                        WrapHomePage1
+                    </Text>
+                    <Text style={{
+                        height:50,
+                        margin:2,
+                        backgroundColor:'lightblue',
+                        justifyContent:'center'
+                    }}>
+                        WrapHomePage3
+                    </Text>
+                    <Text style={{
+                        height:50,
+                        margin:2,
+                        backgroundColor:'lightblue',
+                        alignSelf:'center'
+                    }}>
+                        WrapHomePageWarp
+                    </Text>
+                    <Text style={{
+                        height:50,
+                        margin:2,
+                        backgroundColor:'lightblue',
+                        justifyContent:'center'
+                    }}>
+                        WrapHomePageWarp
+                    </Text>
+                </View>
 
                 <Button
                     onPress={() => this.props.navigation.navigate('Tab', {fatherPage: 'HomePage'})}
