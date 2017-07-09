@@ -21,8 +21,10 @@ class RootScene extends PureComponent {
 
     state: {
         text: string
-    }
+    };
+
     componentDidMount() {
+        console.log("RootScene componentDidMount")
         this.timer = setTimeout(() => {
             InteractionManager.runAfterInteractions(() => {
                 SplashScreen.hide();
@@ -46,8 +48,15 @@ class RootScene extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {text: 'constructor text'};
+        console.log("RootScene constructor")
         // console.log(`ListRequest - Success node:${this.requestNode}`);
-        UserSetting.settings.name = 'hello';
+        // UserSetting.settings.name = 'hello';
+        let mySettings = UserSetting.loadSettings();
+        mySettings.then( ret => {
+            console.log(`onTouchPress :${ret.name}`);
+            let setting = ret;
+            setting.rootscene = 'rootscene';
+        });
     }
 
     render() {

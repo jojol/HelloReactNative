@@ -77,10 +77,16 @@ class HomePage extends PureComponent {
     render() {
         const {params} = this.props.navigation.state;
         console.log("this.props.navigation.state.params" + params)
+        let mySettings = UserSetting.loadSettings();
+        mySettings.then(
+            ret => {
+                console.log('HomePage load setting:' + ret);
+            }
+        );
         return (
             <ScrollView>
                 <Text style={styles.instructions}>
-                    当前屏幕宽度: {Dimensions.get('window').width} input: {UserSetting.settings.type} input: {HomePage.name}
+                    当前屏幕宽度: {Dimensions.get('window').width} input: {mySettings.name} input: {HomePage.name}
                 </Text>
 
 
