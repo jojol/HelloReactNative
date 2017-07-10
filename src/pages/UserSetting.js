@@ -3,11 +3,31 @@ import Storage from "react-native-storage";
 import {AsyncStorage} from 'react-native';
 
 
-const key_settings = "settings4";
+const key_settings = "settings6";
 const key_userinfo = "userinfo";
 // create a component
+export class Settings{
+    guideOpen:boolean;
+    settingName:string;
+    counts:number;
+    isGuideOpen:Function;
+
+    constructor(){
+        this.guideOpen = true;
+        this.counts = 1;
+        this.settingName = "CommonSettings";
+        console.log("Settings" + this.isGuideOpen);
+    }
+
+    isGuideOpen = ()=>{
+        return this.guideOpen;
+    }
+
+}
+
+
 class UserSetting {
-    static settings;
+    static settings:Settings;
 
     static storage = new Storage({
         // 最大容量，默认值1000条数据循环存储
@@ -42,18 +62,18 @@ class UserSetting {
                 // expires: 1000 * 3600
                 expires: null
             });
+            return true;
         }
+        return false;
     };
 
     static loadSettings = async () => {
         console.log('loadSettings');
-        let defSettings = {
-            begging: 'first',
-            type: UserSetting.name,
-        };
+        let defSettings = new Settings();
         // 使用key来保存数据。这些数据一般是全局独有的，常常需要调用的。
         // 除非你手动移除，这些数据会被永久保存，而且默认不会过期。
         console.log('pre load UserSetting.settings:' + UserSetting.settings);
+        console.log(UserSetting.settings);
         if (!UserSetting.settings) {
             console.log('start load');
             try {
@@ -73,11 +93,15 @@ class UserSetting {
                 // 也没有办法“变成”同步返回
                 // 你也可以使用“看似”同步的async/await语法
                 // console.log(ret);
-                UserSetting.settings = ret;
-                console.log(UserSetting.settings);
-                if (!UserSetting.settings){
-                    UserSetting.settings = defSettings;
-                }
+
+                // UserSetting.settings = ret;
+                console.log(ret);
+                // if (!UserSetting.settings){
+                //     UserSetting.settings = defSettings;
+                // }
+                Object.assign(defSettings,ret);
+                UserSetting.settings = defSettings;
+                console.log(UserSetting.settings)
                 return UserSetting.settings;
             } catch (e) {
                 console.log('failed load');

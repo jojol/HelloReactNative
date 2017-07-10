@@ -1,8 +1,9 @@
 import React, {PureComponent} from "react";
 import {Button, Dimensions, Image, StatusBar, StyleSheet, View} from "react-native";
 
+import UserSetting from "./UserSetting";
 import Swiper from "react-native-swiper";
-const {width, height} = Dimensions.get('window')
+const {width, height} = Dimensions.get('window');
 
 // create a component
 class GuidePage extends PureComponent {
@@ -29,7 +30,9 @@ class GuidePage extends PureComponent {
 
     onTouchPress = () => {
         console.log(`onTouchPress :${this.state.text}`);
-        // this.props.onChangeText && this.props.onChangeText()
+        UserSetting.settings.guideOpen = false;
+        UserSetting.saveSettings();
+        this.props.navigation.navigate('Tab', {fatherPage: 'GuidePage'});
     }
     render() {
         const {params} = this.props.navigation.state;
@@ -74,7 +77,7 @@ class GuidePage extends PureComponent {
                             bottom: 70
                         }}>
                             <Button
-                                onPress={() => this.props.navigation.navigate('Tab', {fatherPage: 'GuidePage'})}
+                                onPress={this.onTouchPress}
                                 title="Next"
                             />
                         </View>

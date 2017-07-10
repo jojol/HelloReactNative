@@ -5,7 +5,6 @@ import SplashScreen from "react-native-splash-screen";
 
 import HomePage from "./pages/HomePage";
 import ListPage from "./pages/ListPage";
-import NewsPage from "./pages/NewsPage";
 import UserCenterPage from "./pages/UserCenterPage";
 
 import TabBarItem from "./widget/TabBarItem";
@@ -36,6 +35,19 @@ class RootScene extends PureComponent {
         }, 1500);
     }
 
+    // timeOutAction = () => {
+    //     // this.props.navigation.navigate()
+    //     console.log('timeOutAction');
+    //     console.log(this.props.navigation);
+    //     this.props.navigation.navigate('Guide', {fatherPage: 'RootSence'});
+    //     // navigator.resetTo({
+    //     //     component: HomePage,
+    //     //     name: 'HomePage',
+    //     // });
+    //
+    //     SplashScreen.hide();
+    // };
+
     componentWillUnmount(){
         this.timer && clearTimeout(this.timer);
     }
@@ -53,13 +65,15 @@ class RootScene extends PureComponent {
         // UserSetting.settings.name = 'hello';
         let mySettings = UserSetting.loadSettings();
         mySettings.then( ret => {
-            console.log(`onTouchPress :${ret.name}`);
-            let setting = ret;
-            setting.rootscene = 'rootscene';
+            console.log('RootScene setting loading');
+            console.log(ret);
+            // UserSetting.
+            Navigator.initialRouteName = UserSetting.settings.isGuideOpen ? 'Guide':'Tab';
         });
     }
 
     render() {
+        // console.log(`Navigator.initialRouteName: ${Navigator.initialRouteName}`)
         return (
             <Navigator
                 onNavigationStateChange={
