@@ -15,6 +15,7 @@ class GuidePage extends PureComponent {
 
     props: {
         text: string,
+        onNext: Function,
     }
 
     state: {
@@ -32,11 +33,16 @@ class GuidePage extends PureComponent {
         console.log(`onTouchPress :${this.state.text}`);
         UserSetting.settings.guideOpen = false;
         UserSetting.saveSettings();
-        this.props.navigation.navigate('Tab', {fatherPage: 'GuidePage'});
+        console.log('GuidePage onTouch press');
+        console.log(this.props.navigation);
+        // this.props.onNext();
+        // this.props.navigation.navigate('Tab', {fatherPage: 'GuidePage'});
+        this.props.navigation.goBack();
     }
+
     render() {
-        const {params} = this.props.navigation.state;
-        console.log("this.props.navigation.state.params" + params)
+        // const {params} = this.props.navigation.state;
+        // console.log("this.props.navigation.state.params" + params)
         return (
             <View>
                 {/*<StatusBar barStyle='light-content'/>*/}

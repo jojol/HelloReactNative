@@ -68,14 +68,14 @@ class UserSetting {
     };
 
     static loadSettings = async () => {
-        console.log('loadSettings');
+        console.log('==== loadSettings');
         let defSettings = new Settings();
         // 使用key来保存数据。这些数据一般是全局独有的，常常需要调用的。
         // 除非你手动移除，这些数据会被永久保存，而且默认不会过期。
-        console.log('pre load UserSetting.settings:' + UserSetting.settings);
+        console.log('==== pre load UserSetting.settings:' + UserSetting.settings);
         console.log(UserSetting.settings);
         if (!UserSetting.settings) {
-            console.log('start load');
+            console.log('==== start load');
             try {
                 let ret = await UserSetting.storage.load({
                     key: key_settings,
@@ -95,6 +95,8 @@ class UserSetting {
                 // console.log(ret);
 
                 // UserSetting.settings = ret;
+
+                console.log('==== ');
                 console.log(ret);
                 // if (!UserSetting.settings){
                 //     UserSetting.settings = defSettings;
@@ -104,12 +106,12 @@ class UserSetting {
                 console.log(UserSetting.settings)
                 return UserSetting.settings;
             } catch (e) {
-                console.log('failed load');
+                console.log('==== failed load');
                 UserSetting.settings = defSettings;
                 return UserSetting.settings;
             }
         } else {
-            console.log('direct without load');
+            console.log('==== direct without load');
             return UserSetting.settings;
         }
     }

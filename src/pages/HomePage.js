@@ -9,7 +9,10 @@ import {
     Button,
     View,
     ToastAndroid,
-    Dimensions, TouchableNativeFeedback, TouchableHighlight,
+    Dimensions,
+    TouchableNativeFeedback,
+    TouchableHighlight,
+    InteractionManager,
 } from 'react-native'
 
 import ImageItem from '../widget/ImageItem'
@@ -38,16 +41,31 @@ class HomePage extends PureComponent {
         name:'popo',
     };
 
-    // constructor() {
-    //     super()
-    //
-    //     StatusBar.setBarStyle('light-content')
-    // }
     constructor(props) {
         super(props);
         this.state = {text: 'Useless Placeholder'};
-        // console.log(`ListRequest - Success node:${this.requestNode}`);
+        console.log('== Homepage constructor');
+        console.log(this.props.navigation);
+
+        this.timer = setTimeout(() => {
+            InteractionManager.runAfterInteractions(() => {
+                console.log('HomePage InteractionManager.runAfterInteractions');
+                // navigator.resetTo({
+                //     component: HomePage,
+                //     name: 'HomePage',
+                // });
+                if (UserSetting.settings && UserSetting.settings.guideOpen){
+                    this.props.navigation.navigate('Guide', {fatherPage: 'HomePage'})
+                }
+            });
+        }, 1000);
     }
+
+
+    componentWillUnmount(){
+        this.timer && clearTimeout(this.timer);
+    }
+
 
     onChangeText = (text) => {
         text = text.replace(/ /g, '_');
@@ -75,6 +93,8 @@ class HomePage extends PureComponent {
     }
 
     render() {
+        console.log('== Homepage render');
+        console.log(this.props.navigation);
         const {params} = this.props.navigation.state;
         console.log("this.props.navigation.state.params" + params)
         let mySettings = UserSetting.loadSettings();

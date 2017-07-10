@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React, {PureComponent,PropTypes} from "react";
 import {InteractionManager, StyleSheet} from "react-native";
 import {StackNavigator, TabBarBottom, TabNavigator} from "react-navigation";
 import SplashScreen from "react-native-splash-screen";
@@ -15,18 +15,28 @@ import UserSetting from "./pages/UserSetting";
 // create a component
 class RootScene extends PureComponent {
     props: {
-        onSubmit: Function,
-    }
+        onTouchPress: Function,
+        name:PropTypes.string,
+    };
+
+    static defaultProps = {
+        name: 'RootSceneProps',
+    };
 
     state: {
         text: string
     };
 
+
     componentDidMount() {
-        console.log("RootScene componentDidMount")
+        console.log("RootScene componentDidMount");
         this.timer = setTimeout(() => {
             InteractionManager.runAfterInteractions(() => {
                 SplashScreen.hide();
+                console.log('InteractionManager.runAfterInteractions');
+                console.log(this.props);
+                // this.setState({text:'jump page'});
+                // Navigator.navigate('Tab', {fatherPage: 'RootSence'})
                 // navigator.resetTo({
                 //     component: HomePage,
                 //     name: 'HomePage',
@@ -35,18 +45,21 @@ class RootScene extends PureComponent {
         }, 1500);
     }
 
-    // timeOutAction = () => {
-    //     // this.props.navigation.navigate()
-    //     console.log('timeOutAction');
-    //     console.log(this.props.navigation);
-    //     this.props.navigation.navigate('Guide', {fatherPage: 'RootSence'});
-    //     // navigator.resetTo({
-    //     //     component: HomePage,
-    //     //     name: 'HomePage',
-    //     // });
-    //
-    //     SplashScreen.hide();
-    // };
+    refNavigator = (navigator) => {
+        console.log('refNavigator');
+        console.log(navigator);
+        this.props.navigation = navigator;
+        // console.log(navigator.navigate());
+        // navigator.navigate('Guide', {fatherPage: 'RootSence'});
+        // navigator.resetTo({
+        //     component: HomePage,
+        //     name: 'HomePage',
+        // });
+
+        // SplashScreen.hide();
+
+        console.log('refNavigator');
+    };
 
     componentWillUnmount(){
         this.timer && clearTimeout(this.timer);
@@ -55,45 +68,84 @@ class RootScene extends PureComponent {
     onTouchPress = () => {
         console.log(`onTouchPress :${this.state.text}`);
         // this.props.onChangeText && this.props.onChangeText()
-    }
+    };
 
     constructor(props) {
         super(props);
         this.state = {text: 'constructor text'};
-        console.log("RootScene constructor")
+        console.log(this.props);
         // console.log(`ListRequest - Success node:${this.requestNode}`);
         // UserSetting.settings.name = 'hello';
-        let mySettings = UserSetting.loadSettings();
-        mySettings.then( ret => {
-            console.log('RootScene setting loading');
+
+        console.log('==== RootScene constructor loading');
+        UserSetting.loadSettings().then( ret => {
+            console.log('==== RootScene setting loading');
             console.log(ret);
             // UserSetting.
             Navigator.initialRouteName = UserSetting.settings.isGuideOpen ? 'Guide':'Tab';
         });
     }
 
-    render() {
-        // console.log(`Navigator.initialRouteName: ${Navigator.initialRouteName}`)
-        return (
-            <Navigator
-                onNavigationStateChange={
-                    (prevState, currentState) => {
-                        console.log("prevState " + prevState);
-                        console.log("currentState " + currentState);
-                        // const currentScene = getCurrentRouteName(currentState);
-                        // const previousScene = getCurrentRouteName(prevState);
-                        // if (previousScene !== currentScene) {
-                        //     if (lightContentScenes.indexOf(currentScene) >= 0) {
-                        //         StatusBar.setBarStyle('light-content')
-                        //     } else {
-                        //         StatusBar.setBarStyle('dark-content')
-                        //     }
-                        // }
-                    }
-                }
-            />
 
-        );
+    onGuideBack = () => {
+        console.log('onGuideBack');
+        // this.props.onChangeText && this.props.onChangeText()
+        this.setState({text:'jump to Tab'});
+        this.props.navigation.navigate('Tab', {fatherPage: 'GuidePage'});
+        this.forceUpdate();
+    };
+
+    render() {
+        console.log('RootScene start render props:');
+        console.log(this.props);
+        console.log('RootScene start render navigation:');
+        console.log(UserSetting.settings);
+        // if (UserSetting.settings && UserSetting.settings.guideOpen){
+        //     console.log('Render Guide Page!!!');
+        //     return (
+        //         <GuidePage onNext = {this.onGuideBack}
+        //             // onNavigationStateChange={
+        //             //     (prevState, currentState) => {
+        //             //         console.log("prevState " + prevState);
+        //             //         console.log("currentState " + currentState);
+        //             //         // const currentScene = getCurrentRouteName(currentState);
+        //             //         // const previousScene = getCurrentRouteName(prevState);
+        //             //         // if (previousScene !== currentScene) {
+        //             //         //     if (lightContentScenes.indexOf(currentScene) >= 0) {
+        //             //         //         StatusBar.setBarStyle('light-content')
+        //             //         //     } else {
+        //             //         //         StatusBar.setBarStyle('dark-content')
+        //             //         //     }
+        //             //         // }
+        //             //     }
+        //             // }
+        //         />
+        //     );
+        // }else {
+        //     console.log('Render Home Page!!!');
+            return (
+                <Navigator
+                    ref={this.refNavigator}
+                    onNavigationStateChange={
+                        (prevState, currentState) => {
+                            console.log("prevState " + prevState);
+                            console.log("currentState " + currentState);
+                            // const currentScene = getCurrentRouteName(currentState);
+                            // const previousScene = getCurrentRouteName(prevState);
+                            // if (previousScene !== currentScene) {
+                            //     if (lightContentScenes.indexOf(currentScene) >= 0) {
+                            //         StatusBar.setBarStyle('light-content')
+                            //     } else {
+                            //         StatusBar.setBarStyle('dark-content')
+                            //     }
+                            // }
+                        }
+                    }
+                />
+
+            );
+        // }
+
     }
 }
 
@@ -196,7 +248,7 @@ const Navigator = StackNavigator(
     ,
     {
         headerMode: 'screen',
-        initialRouteName: "Guide",
+        initialRouteName: "Tab",
         initialRouteParams:{user:"init roter jojol"},
         navigationOptions: {
             // headerStyle: { backgroundColor: color.theme }
