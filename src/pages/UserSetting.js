@@ -3,7 +3,7 @@ import Storage from "react-native-storage";
 import {AsyncStorage} from 'react-native';
 
 
-const key_settings = "settings6";
+const key_settings = "settings7";
 const key_userinfo = "userinfo";
 // create a component
 export class Settings{

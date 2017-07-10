@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {Button, Dimensions, Image, StatusBar, StyleSheet, View} from "react-native";
+import {Button, Dimensions, Image, StatusBar, StyleSheet, View,Platform,BackHandler} from "react-native";
 
 import UserSetting from "./UserSetting";
 import Swiper from "react-native-swiper";
@@ -28,6 +28,27 @@ class GuidePage extends PureComponent {
         // console.log(`ListRequest - Success node:${this.requestNode}`);
     }
 
+    componentWillMount(){
+        if (Platform.OS === 'android'){
+            BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+
+    componentWillUnmount(){
+        if (Platform.OS === 'android'){
+            BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+
+    onBackAndroid = () => {
+        // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
+        // Typically you would use the navigator here to go to the last state.
+        // if (!this.onMainScreen()) {
+        //     this.goBack();
+        //     return true;
+        // }
+        return true;
+    };
 
     onTouchPress = () => {
         console.log(`onTouchPress :${this.state.text}`);
@@ -38,7 +59,7 @@ class GuidePage extends PureComponent {
         // this.props.onNext();
         // this.props.navigation.navigate('Tab', {fatherPage: 'GuidePage'});
         this.props.navigation.goBack();
-    }
+    };
 
     render() {
         // const {params} = this.props.navigation.state;
