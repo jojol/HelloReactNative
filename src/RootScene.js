@@ -12,6 +12,7 @@ import GuidePage from "./pages/GuidePage";
 import SubChannelsPage from "./pages/SubChannelsPage";
 import UserSetting from "./utils/UserSetting";
 import APIType from "./utils/APIType";
+import TestBanner from "./pages/TestBanner";
 
 // create a component
 class RootScene extends PureComponent {
@@ -270,9 +271,10 @@ const Navigator = StackNavigator(
             //     // showIcon: true,
             // },
         },
-        Home: {screen: HomePage},
+        HomePage: {screen: HomePage},
         ListPage: {screen: ListPage},
         Guide: {screen: GuidePage},
+        TestBanner: {screen: TestBanner},
     }
     ,
     {

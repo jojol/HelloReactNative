@@ -17,6 +17,7 @@ import {
 
 import ImageItem from '../widget/ImageItem'
 import UserSetting from '../utils/UserSetting'
+import Banner from "../widget/Banner";
 
 // create a component
 class HomePage extends PureComponent {
@@ -105,6 +106,8 @@ class HomePage extends PureComponent {
         );
         return (
             <ScrollView>
+                {/*<Banner bannerHeight={200} />*/}
+                <Banner />
                 <Text style={styles.instructions}>
                     当前屏幕宽度: {Dimensions.get('window').width} input: {mySettings.name} input: {HomePage.name}
                 </Text>
@@ -196,7 +199,7 @@ class HomePage extends PureComponent {
                 </View>
 
                 <Button
-                    onPress={() => this.props.navigation.navigate('Tab', {fatherPage: 'HomePage'})}
+                    onPress={() => this.props.navigation.navigate('HomePage', {fatherPage: 'HomePage'})}
                     title="JumpToHomePage"
                 />
 
