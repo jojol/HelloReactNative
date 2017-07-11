@@ -1,22 +1,20 @@
-import Lightbox from 'react-native-lightbox'
-import React, {PureComponent} from 'react'
+import Lightbox from "react-native-lightbox";
+import React, {PureComponent} from "react";
 import {
-    StyleSheet,
+    Button,
+    Dimensions,
+    Image,
+    InteractionManager,
     ScrollView,
+    StyleSheet,
     Text,
     TextInput,
-    Image,
-    Button,
-    View,
-    ToastAndroid,
-    Dimensions,
-    TouchableNativeFeedback,
     TouchableHighlight,
-    InteractionManager,
-} from 'react-native'
+    View
+} from "react-native";
 
-import ImageItem from '../widget/ImageItem'
-import UserSetting from '../utils/UserSetting'
+import ImageItem from "../widget/ImageItem";
+import UserSetting from "../utils/UserSetting";
 import Banner from "../widget/Banner";
 
 // create a component

@@ -2,10 +2,10 @@ import React, {PureComponent} from "react";
 import {Dimensions, Image, StyleSheet, View} from "react-native";
 import Swiper from "react-native-swiper";
 const {width} = Dimensions.get('window');
-let defHeight = (width * 300) / 720;
+let bannerHeight = (width * 300) / 720;
 
 // create a component
-class Banner extends PureComponent {
+export default class Banner extends PureComponent {
     props: {
         text: string,
         bannerHeight: number,
@@ -24,9 +24,9 @@ class Banner extends PureComponent {
         super(props);
         this.state = {bannerShow: false,};
         if (this.props.bannerHeight > 0){
-            defHeight = this.props.bannerHeight;
+            bannerHeight = this.props.bannerHeight;
         }
-        console.log(`banner - props:${this.props.bannerHeight} computer: ${defHeight}`);
+        console.log(`banner - props:${this.props.bannerHeight} computer: ${bannerHeight}`);
     }
 
     componentDidMount() {
@@ -46,16 +46,16 @@ class Banner extends PureComponent {
 
     render() {
         if (this.state.bannerShow) {
-            console.log(`banner - bannerHeight:${this.props.bannerHeight} height: ${defHeight}`);
+            console.log(`banner - bannerHeight:${this.props.bannerHeight} height: ${bannerHeight}`);
             return (
                 <Swiper style={styles.wrapper}
-                        height={defHeight}
+                        height={bannerHeight}
                         dot={<View style={styles.dot}/>}
                         activeDot={<View style={[styles.dot,styles.dotOn]}/>}
                         paginationStyle={{
                             bottom: 10
                         }}
-                        loop={false}>
+                        loop={true}>
                     <View style={styles.slide}>
                         <Image style={styles.image} source={require('../img/banner/banner1.jpg')}/>
                     </View>
@@ -69,7 +69,7 @@ class Banner extends PureComponent {
             )
         } else {
             return (
-                <View style={{height: defHeight}}>
+                <View style={{height: bannerHeight}}>
                     <Image source={ require('../img/banner/banner1.jpg')} style={styles.image}/>
                 </View>
             );
@@ -80,8 +80,6 @@ class Banner extends PureComponent {
 
 const styles = StyleSheet.create({
     wrapper: {
-        width,
-        height:defHeight,
         backgroundColor: 'transparent'
     },
     dot: {
@@ -103,8 +101,7 @@ const styles = StyleSheet.create({
 
     image: {
         width,
-        flex: 1
+        flex: 1,
     }
 });
 
-export default Banner;
