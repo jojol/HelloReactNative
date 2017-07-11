@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {Dimensions, Image, StyleSheet, View} from "react-native";
+import {Dimensions, Image, StyleSheet, TouchableOpacity, View} from "react-native";
 import Swiper from "react-native-swiper";
 const {width} = Dimensions.get('window');
 let bannerHeight = (width * 300) / 720;
@@ -42,6 +42,7 @@ export default class Banner extends PureComponent {
     }
 
     onTouchPress = () => {
+        alert("=====onTouchPress");
     };
 
     render() {
@@ -55,16 +56,51 @@ export default class Banner extends PureComponent {
                         paginationStyle={{
                             bottom: 10
                         }}
+                        autoplay={true}
+                        autoplayTimeout={5.5}
                         loop={true}>
-                    <View style={styles.slide}>
+
+                    <TouchableOpacity
+                        // onPressIn={() => console.log("onPressIn")}
+                        // onPressOut={() => console.log("onPressOut")}
+                        // onLongPress={() => console.log("onLongPress")}
+                        activeOpacity = {0.7}
+                        style={styles.slide}
+                        onPress={() => {
+                            alert("=====onTouchPress1");
+                        }}
+                    >
                         <Image style={styles.image} source={require('../img/banner/banner1.jpg')}/>
-                    </View>
-                    <View style={styles.slide}>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        activeOpacity = {0.7}
+                        style={styles.slide}
+                        onPress={() => {
+                            alert("=====onTouchPress2");
+                        }}
+                    >
                         <Image style={styles.image} source={require('../img/banner/banner2.jpg')}/>
-                    </View>
-                    <View style={styles.slide}>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        activeOpacity = {0.7}
+                        style={styles.slide}
+                        onPress={() => {
+                            alert("=====onTouchPress3");
+                        }}
+                    >
                         <Image style={styles.image} source={require('../img/banner/banner3.jpg')}/>
-                    </View>
+                    </TouchableOpacity>
+
+                    {/*<View style={styles.slide}>*/}
+                        {/*<Image style={styles.image} onPress={this.onTouchPress} source={require('../img/banner/banner1.jpg')}/>*/}
+                    {/*</View>*/}
+                    {/*<View style={styles.slide}>*/}
+                        {/*<Image style={styles.image} onPress={this.onTouchPress} source={require('../img/banner/banner2.jpg')}/>*/}
+                    {/*</View>*/}
+                    {/*<View style={styles.slide}>*/}
+                        {/*<Image style={styles.image} onPress={this.onTouchPress} source={require('../img/banner/banner3.jpg')}/>*/}
+                    {/*</View>*/}
                 </Swiper>
             )
         } else {
