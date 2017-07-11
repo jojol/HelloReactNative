@@ -10,7 +10,8 @@ import UserCenterPage from "./pages/UserCenterPage";
 import TabBarItem from "./widget/TabBarItem";
 import GuidePage from "./pages/GuidePage";
 import SubChannelsPage from "./pages/SubChannelsPage";
-import UserSetting from "./pages/UserSetting";
+import UserSetting from "./utils/UserSetting";
+import APIType from "./utils/APIType";
 
 // create a component
 class RootScene extends PureComponent {
@@ -43,6 +44,7 @@ class RootScene extends PureComponent {
                 // });
             });
         }, 1500);
+        let ret = this.requestListPage();
     }
 
     refNavigator = (navigator) => {
@@ -63,6 +65,33 @@ class RootScene extends PureComponent {
 
     componentWillUnmount(){
         this.timer && clearTimeout(this.timer);
+    }
+
+    async requestListPage() {
+        try {
+            let response = await fetch(APIType.listPage);
+            let json = await response.json();
+            console.log(json);
+            // let dataList = json.data.map(
+            //     (info) => {
+            //         return {
+            //             id: info.id,
+            //             imageUrl: info.squareimgurl,
+            //             title: info.mname,
+            //             subtitle: `[${info.range}]${info.title}`,
+            //             price: info.price
+            //         }
+            //     }
+            // )
+            //
+            // this.setState({
+            //     dataList: dataList,
+            //     refreshing: false,
+            // })
+        } catch (error) {
+            console.log(error)
+            // this.setState({ refreshing: false })
+        }
     }
 
     onTouchPress = () => {

@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import {Button, Dimensions, Image, StatusBar, StyleSheet, View,Platform,BackHandler} from "react-native";
 
-import UserSetting from "./UserSetting";
+import UserSetting from "../utils/UserSetting";
 import Swiper from "react-native-swiper";
 const {width, height} = Dimensions.get('window');
 

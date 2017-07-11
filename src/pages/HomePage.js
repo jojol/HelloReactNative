@@ -16,7 +16,7 @@ import {
 } from 'react-native'
 
 import ImageItem from '../widget/ImageItem'
-import UserSetting from './UserSetting'
+import UserSetting from '../utils/UserSetting'
 
 // create a component
 class HomePage extends PureComponent {
